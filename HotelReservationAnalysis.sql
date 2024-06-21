@@ -1,0 +1,16 @@
+select * from hotel_reservation_dataset;
+select count(*) as total_reservations from hotel_reservation_dataset;
+select type_of_meal_plan, count(*) as total_guests from hotel_reservation_dataset group by type_of_meal_plan order by total_guests desc;
+select avg_price_per_room from hotel_reservation_dataset where no_of_children != 0;
+select count(*) as no_of_reservations from hotel_reservation_dataset where year(arrival_date) = 2017;
+select room_type_reserved, count(room_type_reserved) as no_of_rooms from hotel_reservation_dataset group by room_type_reserved order by no_of_rooms desc;
+select count(*) as weekend_reservations from hotel_reservation_dataset where no_of_weekend_nights > 0;
+select max(lead_time) as max_lead_time, min(lead_time) as min_lead_time from hotel_reservation_dataset;
+select market_segment_type, count(*) as total_reservations from hotel_reservation_dataset group by market_segment_type order by total_reservations desc;
+select count(*) as confirmed_reservations from hotel_reservation_dataset where booking_status = 'not_canceled';
+select sum(no_of_adults) as total_adults, sum(no_of_children) as total_children from hotel_reservation_dataset;
+select avg(no_of_weekend_nights) as avg_weekend_night_with_children from hotel_reservation_dataset where no_of_children > 0;
+select month(arrival_date) as month, count(*) as reservations_per_month from hotel_reservation_dataset group by month(arrival_date) order by month;
+select room_type_reserved, avg(no_of_week_nights + no_of_weekend_nights) as avg_nights from hotel_reservation_dataset group by room_type_reserved order by room_type_reserved asc;
+select room_type_reserved, count(*) as no_of_reservations, avg(avg_price_per_room) as avg_price from hotel_reservation_dataset where no_of_children > 0 group by room_type_reserved order by room_type_reserved asc;
+select market_segment_type, count(avg_price_per_room) as avg_price_per_room from hotel_reservation_dataset group by market_segment_type order by avg_price_per_room desc;
